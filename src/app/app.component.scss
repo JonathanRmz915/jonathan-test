@@ -1,0 +1,16 @@
+.table-content{
+  tr{
+    text-align: center;
+  }
+
+  tr:nth-child(even) {
+    background-color: #d3eaf6;
+  }
+}
+.form-content{
+  .object-container{
+    padding: 0.5rem;
+  }
+}
+
+

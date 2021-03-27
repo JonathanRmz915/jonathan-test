@@ -1,0 +1,78 @@
+<ng-container>
+  <div class="table-content" *ngIf="persons$ | async as persons">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Documento</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let person of persons">
+        <th scope="row">{{ person.name | titlecase}}</th>
+        <th scope="row">{{ person.age }}</th>
+        <th scope="row">{{ person.gender | titlecase}}</th>
+        <th scope="row">{{ person.document }}</th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="form-content">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="row object-container">
+        <div class="col-4">
+          <mat-form-field appearance="standard">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name" id="name" maxlength="255" type="text">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row object-container">
+        <div class="col-4">
+          <mat-form-field appearance="standard">
+            <mat-label>Edad</mat-label>
+            <input matInput formControlName="age" id="age" maxlength="255" type="number">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row object-container">
+        <div class="col-4">
+          <mat-form-field appearance="standard">
+            <mat-label>Sexo</mat-label>
+            <select matNativeControl formControlName="gender">
+              <option *ngFor="let gender of genders" [value]="gender">{{gender | titlecase}}</option>
+            </select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row object-container">
+        <div class="col-4">
+            <div>
+              <button #buttonPicker="appFilePicker"
+                      class="btn btn-primary"
+                      appFilePicker
+                      [multiple]="false"
+                      (filesChanged)="onFilesChanged($event)">
+                Subir documento
+              </button>
+            </div>
+
+        </div>
+      </div>
+
+      <div class="row object-container">
+        <div class="col-4">
+          <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Guardar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</ng-container>
+
+
