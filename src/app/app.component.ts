@@ -29,7 +29,7 @@ export class AppComponent implements OnInit{
         map(persons => {
           const personLocalInfo = localStorage.getItem('personLocalInfo');
           if (personLocalInfo){
-            const personArray = JSON.parse(personLocalInfo) as any[];
+            const personArray = JSON.parse(personLocalInfo) as Person[];
             return persons.concat(personArray);
           }
         })
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit{
     if (!personLocalInfo){
       localStorage.setItem('personLocalInfo', JSON.stringify([this.userForm.value]));
     } else {
-      const personArray = JSON.parse(personLocalInfo) as any[];
+      const personArray = JSON.parse(personLocalInfo) as Person[];
       personArray.push(this.userForm.value);
       localStorage.setItem('personLocalInfo', JSON.stringify(personArray));
     }
