@@ -19,7 +19,7 @@ export class AppComponent implements OnInit{
     private _personService: PersonService) {
   }
   ngOnInit(): void {
-    this._initTimerForm();
+    this._initUserForm();
     this._loadUsers();
   }
 
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit{
       );
   }
 
-  private _initTimerForm(): void {
+  private _initUserForm(): void {
     this.userForm = this._formBuilder.group({
       name: [null, [Validators.required]],
       age: [null, [Validators.required]],
